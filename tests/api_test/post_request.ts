@@ -5,6 +5,7 @@ test("Create Post API request using static request body", async ({request}) => {
         data: postAPIRequest,
        
     });
+    console.log("Full body : "+(response));
 
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);

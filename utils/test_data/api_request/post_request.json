@@ -1,4 +1,5 @@
 {
+    "booking": {
     "firstname": "Sally",
     "lastname": "Brown",
     "totalprice": 111,
@@ -8,4 +9,9 @@
         "checkout": "2014-10-23"
     },
     "additionalneeds": "Breakfast"
+},
+"login": {
+    "username": "John",
+    "password": "Doe"
+}
 }

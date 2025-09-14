@@ -10,13 +10,14 @@ test("Create Post API request using static request body", async ({request}) => {
     });
     const responseBody = await response.json();
     console.log(`Response Body: ${JSON.stringify(responseBody,null,2 )}`);
-    // console.log("Full body : "+(response));
+    console.log("Full body : "+(response));
 
-    // expect(response.ok()).toBeTruthy();
-    // expect(response.status()).toBe(200);
-    // const responseBody = await response.json();
-    // expect(responseBody.booking.firstname).toBe("Sally");
-    // expect(responseBody.booking.lastname).toBe("Brown");
+   
+    expect(response.status()).toBe(200);
+     expect(response.statusText()).toBe('OK');
+    const APIresponseBody = await response.json();
+    expect(APIresponseBody.booking.firstname).toBe("Sally");
+    expect(APIresponseBody.booking.lastname).toBe("Brown");
 })
 
 test("Login API with valid credentials should return 200", async ({ request }) => {
@@ -44,16 +45,19 @@ test("Login API with valid credentials should return 200", async ({ request }) =
 
   // Assert status code is 200
   expect(response.status()).toBe(200);
-
-  // Optional: assert the error message
-  // expect(responseBody).toHaveProperty('message');
-  // expect(responseBody.message.toLowerCase()).toContain('the provided credentials are not correct');
+  expect(response.statusText()).toBe('OK');
+  //Assert Api key is present in response
+  expect(responseBody).toHaveProperty('otp_expired');
+  expect(responseBody).toHaveProperty('access_code');
+  expect(responseBody).toHaveProperty('email');
+  expect(responseBody).toHaveProperty('message');
+  //assert rsposnse body
+  expect(responseBody.email).toBe("andrewlynn@yopmail.com");
+  expect(responseBody.message).toBe("Credential Matched");
 });
 test("Login API with incorrect credentials should return 401", async ({ request }) => {
   // Use the exact payload that triggers 401 in manual hit
-  const payload = {
-    email: "andrewlynn@yopmail.com", // likely field expected is 'email', not 'username'
-    password: "Test@123"             //  password
+  const payload = {data : postAPIRequest.login.invalid, // likely field expected is 'email', not 'username'
   };
 
   // Make POST request
@@ -64,7 +68,7 @@ test("Login API with incorrect credentials should return 401", async ({ request 
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      data: payload,
+      data: postAPIRequest.login.invalid,
     }
   );
 
@@ -76,8 +80,13 @@ test("Login API with incorrect credentials should return 401", async ({ request 
   // Assert status code is 401
   expect(response.status()).toBe(401);
 
-  // Optional: assert the error message
+  // Assert: Api keys are present in response
+  expect(responseBody).toHaveProperty('status');
+  expect(responseBody).toHaveProperty('status_code');
   expect(responseBody).toHaveProperty('message');
+  //assert rsposnse body
+  expect(responseBody.status).toBe('error');
+  expect(responseBody.status_code).toBe(401);
   expect(responseBody.message.toLowerCase()).toContain('the provided credentials are not correct');
 });
 test("Login API with no-otp should return 200", async ({ request }) => {

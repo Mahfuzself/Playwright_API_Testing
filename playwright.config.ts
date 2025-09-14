@@ -14,7 +14,8 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
 export default defineConfig({
   testDir: './tests',
   testMatch: [
-    "api_test/post_request.ts",
+    "api_test/post_request_static.ts",
+    "api_test/post_request_dynamic.ts"
   ],
 
   /* Run tests in files in parallel */

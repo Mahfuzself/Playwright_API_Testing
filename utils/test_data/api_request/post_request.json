@@ -11,7 +11,13 @@
     "additionalneeds": "Breakfast"
 },
 "login": {
-    "username": "John",
-    "password": "Doe"
+    "valid": {
+        "email": "andrewlynn@yopmail.com",
+        "password": "Test@1234"
+    },
+    "invalid": {
+        "email": "andrewlynn@yopmail.com",
+        "password": "Test@1234"
+    }
 }
 }

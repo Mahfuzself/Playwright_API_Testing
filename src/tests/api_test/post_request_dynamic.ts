@@ -4,7 +4,7 @@ import postAPIRequest from '../../utils/test_data/api_request/dynamic_post_api_r
 import { formatAPIRequest } from '../../utils/api_helpers';
 import path from 'path';
 import fs from 'fs';
-
+import {faker, fi} from '@faker-js/faker';
 test.use({
     baseURL: process.env.BASE_URL
 })
@@ -13,7 +13,10 @@ test("Create Post API request using dynamic request body", async ({request}) => 
    //Reading json file
    const filepath = path.join(__dirname,'../../utils/test_data/api_request/dynamic_post_api_request.json');
    const jsonTemplate = fs.readFileSync(filepath, 'utf-8');
-   const values =["Api test playwright with typescript","Api test playwright with javascript","1000"]
+   const firstName = faker.person.firstName();
+   const lastName = faker.person.lastName();
+   const totalPrice = faker.number.int({min:1000,max:10000});
+   const values =[firstName,lastName,totalPrice];
    const postAPIRequestBody = await formatAPIRequest(jsonTemplate,values);
 
    const response = await request.post('/booking', {
@@ -31,9 +34,9 @@ test("Create Post API request using dynamic request body", async ({request}) => 
     expect(APIresponseBody.booking.bookingdates).toHaveProperty('checkin');
     expect(APIresponseBody.booking.bookingdates).toHaveProperty('checkout');
     //Validate value in response
-    expect(APIresponseBody.booking.firstname).toBe("Api test playwright with typescript");
-    expect(APIresponseBody.booking.lastname).toBe("Api test playwright with javascript");
-    expect(APIresponseBody.booking.totalprice).toBe(1000);
+    expect(APIresponseBody.booking.firstname).toBe(firstName);
+    expect(APIresponseBody.booking.lastname).toBe(lastName);
+    expect(APIresponseBody.booking.totalprice).toBe(totalPrice);
     expect(APIresponseBody.booking.bookingdates.checkin).toBe("2013-02-23");
     expect(APIresponseBody.booking.bookingdates.checkout).toBe("2014-10-23");
   

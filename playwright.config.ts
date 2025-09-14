@@ -12,10 +12,11 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './src/tests',
   testMatch: [
-    "api_test/post_request_static.ts",
-    "api_test/post_request_dynamic.ts"
+    "post_request_static.ts",
+    "post_request_dynamic.ts",
+    "dynamic_typesefty_Api_request.ts"
   ],
 
   /* Run tests in files in parallel */

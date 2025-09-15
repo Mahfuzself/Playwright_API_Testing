@@ -25,4 +25,6 @@ test("Validate Dynamic TypeSafety Post Request API",async({request})=>{
     expect(responseBody.booking.firstname).toBe(fname);
     expect(responseBody.booking.lastname).toBe(lname);
     expect(responseBody.booking.totalprice).toBe(totalPrice);
+    expect(responseBody.booking.bookingdates.checkin).toBe("2023-01-01");
+     expect(responseBody.booking.bookingdates.checkout).toBe("2023-01-05");
 });

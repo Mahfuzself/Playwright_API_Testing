@@ -16,7 +16,8 @@ export default defineConfig({
   testMatch: [
     "post_request_static.ts",
     "post_request_dynamic.ts",
-    "dynamic_typesefty_Api_request.ts"
+    "dynamic_typesefty_Api_request.ts",
+    "Get_API_Request.ts"
   ],
 
   /* Run tests in files in parallel */

@@ -15,10 +15,15 @@ test("Create get api request using playwright with typescript",async({request})=
     const response = await request.post('/booking',{
         data : requestBody
     })
-    expect(response).toBe('200')
-    expect(response).toBe('OK')
-    const responseBody = response.json()
-    
+     const responseBody =  await response.json();
+    expect(response.status()).toBe(200)
+    expect(response.statusText()).toBe('OK')
+   
+    const b_id = responseBody.bookingid;
+    // Create Get Request 
+  const getApiresponse =   await request.get(`/booking/${b_id}`)
+  expect(getApiresponse.status()).toBe(200)
+  expect(getApiresponse.statusText()).toBe('OK')
 
     
 

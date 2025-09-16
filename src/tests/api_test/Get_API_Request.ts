@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { request, get } from 'http';
 import { fa, faker, Faker } from "@faker-js/faker";
 import{getPostAPIRequest} from "../../utils/api_helpers"
+import { stringify } from "querystring";
 test.use({
     baseURL : process.env.baseUrl
 })
@@ -24,6 +25,11 @@ test("Create get api request using playwright with typescript",async({request})=
   const getApiresponse =   await request.get(`/booking/${b_id}`)
   expect(getApiresponse.status()).toBe(200)
   expect(getApiresponse.statusText()).toBe('OK')
+  const jsonResponse = await getApiresponse.json();
+  console.log(`Get Api Response : ${JSON.stringify(jsonResponse,null,2)}`);
+  //verify getApi response field data 
+  expect(jsonResponse.firstname).toBe(fname)
+  expect(jsonResponse.lastname).toBe(lname)
 
     
 

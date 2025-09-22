@@ -1,3 +1,6 @@
+## 📂 Project Structure
+
+```bash
 ├── src/
 │   ├── tests/            # API test files (GET, POST, PUT, PATCH)
 │   ├── utils/            # Helpers, type definitions, request bodies

@@ -51,7 +51,7 @@ test("Update booking using put api request",async({request})=>{
     // const updatetotalPrice = faker.number.int({min:1000,max:10000});
     const putRequest = await request.put(`/booking/${b_id}`,{
         headers : {
-            "Content_type": "application/json",
+            "Content-Type": "application/json",
             "Cookie" : `token= ${token}`
         },
         data : putApiRequest

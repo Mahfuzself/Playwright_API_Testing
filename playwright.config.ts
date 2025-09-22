@@ -19,7 +19,8 @@ export default defineConfig({
     "dynamic_typesefty_Api_request.ts",
     "Get_API_Request.ts",
     "query_perameter.ts",
-    "put_api_request.ts"
+    "put_api_request.ts",
+    "patch_api_request.ts"
   ],
 
   /* Run tests in files in parallel */

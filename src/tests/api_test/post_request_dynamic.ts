@@ -9,7 +9,7 @@ test.use({
     baseURL: process.env.BASE_URL
 })
 
-test("Create Post API request using dynamic request body", async ({request}) => {
+test("Create Post API request with dynamic request body using playwright & Typescript", async ({request}) => {
    //Reading json file
    const filepath = path.join(__dirname,'../../utils/test_data/api_request/dynamic_post_api_request.json');
    const jsonTemplate = fs.readFileSync(filepath, 'utf-8');

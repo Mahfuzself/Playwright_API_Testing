@@ -20,7 +20,8 @@ export default defineConfig({
     "Get_API_Request.ts",
     "query_perameter.ts",
     "put_api_request.ts",
-    "patch_api_request.ts"
+    "patch_api_request.ts",
+    "delete_booking_request.ts"
   ],
 
   /* Run tests in files in parallel */
